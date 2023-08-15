@@ -1,9 +1,9 @@
-package com.example.email.ui.view.activities
+package com.example.email.ui.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import com.example.email.data.db.MailDatabase
+import com.example.email.data.local.MailDatabase
 import com.example.email.data.repository.MailRepository
 import com.example.email.databinding.ActivityMainBinding
 import com.example.email.ui.viewmodel.MailViewModel

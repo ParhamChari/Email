@@ -1,6 +1,5 @@
-package com.example.email.ui.view.fragments
+package com.example.email.ui.view.fragment
 
-import android.os.Build
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
@@ -12,12 +11,13 @@ import androidx.navigation.fragment.findNavController
 import com.example.email.R
 import com.example.email.data.model.MailModel
 import com.example.email.databinding.FragmentSignUpBinding
-import com.example.email.ui.view.activities.MainActivity
+import com.example.email.ui.view.activity.MainActivity
 import com.example.email.ui.viewmodel.MailViewModel
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
 
 
+@Suppress("DEPRECATION")
 class SignUpFragment : Fragment() {
     private lateinit var binding: FragmentSignUpBinding
     private lateinit var mailViewModel: MailViewModel
@@ -37,14 +37,14 @@ class SignUpFragment : Fragment() {
 
     private fun bindViews() {
         binding.btnSignUp.setOnClickListener {
-            val mailText = binding.emailAddress.text.toString().trim()
-            val passText = binding.password.text.toString().trim()
+
             setMailSave()
         }
     }
 
     private fun setMailSave() {
         mailViewModel = (activity as MainActivity).mailViewModel
+
         val mailText = binding.emailAddress.text.toString().trim()
         val passText = binding.password.text.toString().trim()
         val mailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
@@ -67,14 +67,16 @@ class SignUpFragment : Fragment() {
                 binding.password.requestFocus()
                 binding.password.error = "رمز عبور وارد شده نباید کم تر از 8 کاراکتر باشد"
             }
-            else ->{
+            else -> {
                 //Add Mail
                 val mail = MailModel(0, mailText, passText)
                 mailViewModel.addMail(mail)
 
                 //Show Message
                 val snackbar = Snackbar.make(binding.root, "ثبت نام موفقیت آمیز بود", Snackbar.LENGTH_LONG)
-                snackbar.duration = 4000
+                snackbar.duration = 3000
+                snackbar.setTextColor(resources.getColor(R.color.white))
+                snackbar.setBackgroundTint(resources.getColor(R.color.success_color))
                 snackbar.view.layoutDirection = View.LAYOUT_DIRECTION_RTL
                 snackbar.show()
 

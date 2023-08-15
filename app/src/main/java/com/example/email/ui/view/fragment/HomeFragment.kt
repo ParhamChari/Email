@@ -1,4 +1,4 @@
-package com.example.email.ui.view.fragments
+package com.example.email.ui.view.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
